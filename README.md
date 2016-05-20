@@ -8,7 +8,7 @@ Drag and Drop Card component for React
 Dead simple.
 
 ## Install
-This project uses react-dnd under the hood, so don't forget to install it.
+This library uses react-dnd under the hood, so don't forget to install it.
 ```
 npm install --save react-dnd react-dnd-card
 ```
@@ -122,3 +122,6 @@ class List extends Component {
 // Use DragDropContext to decorate your List component
 export default DragDropContext(HTML5Backend)(List);
 ```
+
+## Performance Issue
+Applying to a large list will be very slow. Use React DnD directly if you have to deal with that.
