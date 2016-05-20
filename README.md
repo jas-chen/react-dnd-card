@@ -50,7 +50,9 @@ List.js
 ```javascript
 import React, { Component } from 'react';
 import update from 'react/lib/update';
-import { DragDropCard, HTML5DragDropContext } from 'react-dnd-card';
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
+import DragDropCard from 'react-dnd-card';
 import Card from './Card';
 
 class List extends Component {
@@ -117,6 +119,6 @@ class List extends Component {
   }
 }
 
-// Use HTML5DragDropContext to decorate your List component
-export default HTML5DragDropContext(List);
+// Use DragDropContext to decorate your List component
+export default DragDropContext(HTML5Backend)(List);
 ```
