@@ -1,8 +1,7 @@
 import React, { cloneElement, Component, PropTypes } from 'react';
 import ItemTypes from './ItemTypes';
 import { DragDropContext, DragSource, DropTarget } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
-import flow from 'lodash/flow';
+import flow from 'lodash.flow';
 
 const cardSource = {
   beginDrag(props) {
@@ -49,7 +48,7 @@ function Card(props) {
   return connectDragSource(connectDropTarget(<div {...rest}>{newCard}</div>));
 }
 
-export const DragDropCard = flow(
+export default flow(
   DragSource(ItemTypes.CARD, cardSource, (connect, monitor) => ({
     connectDragSource: connect.dragSource(),
     isDragging: monitor.isDragging()
@@ -67,5 +66,3 @@ Card.propTypes = {
   index: PropTypes.number.isRequired,
   moveCard: PropTypes.func.isRequired
 }
-
-export const HTML5DragDropContext = (c) => DragDropContext(HTML5Backend)(c);
