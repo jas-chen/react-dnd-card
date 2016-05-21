@@ -28,9 +28,9 @@ module.exports = {
     ]
   },
   resolve: {
-    modulesDirectories: [ 'node_modules' ],
-    alias: {
-      'react-dnd-card': path.resolve(__dirname, '../lib')
-    }
+    // alias: {
+    //   'react-dnd-card': path.resolve(__dirname, '../lib')
+    // },
+    modulesDirectories: [ 'node_modules' ]
   }
 };
