@@ -5,6 +5,10 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import DndCard from 'react-dnd-card';
 import Item from './Item';
 
+function createItem(item, isDragging) {
+  return <Item text={item.text} isDragging={isDragging}/>;
+}
+
 class List extends Component {
   constructor(props) {
     super(props);
@@ -35,10 +39,6 @@ class List extends Component {
     };
   }
 
-  createItem(item, isDragging) {
-    return <Item text={item.text} isDragging={isDragging}/>;
-  }
-
   moveCard(dragIndex, hoverIndex) {
     const { items } = this.state;
     const dragItem = items[dragIndex];
@@ -64,7 +64,7 @@ class List extends Component {
             key={item.id}
             index={index}
             source={item}
-            createItem={this.createItem}
+            createItem={createItem}
             moveCard={this.moveCard}
             noDropOutside={true}
             style={{
