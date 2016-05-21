@@ -107,9 +107,7 @@ class List extends Component {
             createItem={createItem}
             moveCard={this.moveCard}
             noDropOutside={true}
-            style={{
-              marginBottom: '.5em'
-            }}
+            style={{ marginBottom: '.5em' }}
           />
         ))}
       </div>
@@ -117,7 +115,6 @@ class List extends Component {
   }
 }
 
-// Use DragDropContext to decorate your List component
 export default DragDropContext(HTML5Backend)(List);
 ```
 
@@ -139,7 +136,7 @@ The index of the `<DndCard>` element.
 Could be anything. It will be passed to `createItem` (see below).
 
 ##### `createItem(source, isDragging)` (required)
-A function that creates your item element.
+A function that creates and returns your item element.
 
 ##### `moveCard(dragIndex, hoverIndex)` (required)
 A function to handle the movement.
@@ -147,8 +144,8 @@ A function to handle the movement.
 ##### `noDropOutside` (optional)
 Disabled by default. Set to `true` to revert the drag operation if the card was dropped outside its container. You can compare [the enabled demo](http://gaearon.github.io/react-dnd/examples-sortable-cancel-on-drop-outside.html) and [the disabled demo](http://gaearon.github.io/react-dnd/examples-sortable-simple.html) to tell the difference.
 
-##### `style` and other props (optional)
-Since `<DndCard>` wraps your item component with a `<div>` element, you might want to apply some styles on that `<div>`.
+##### Other props (optional)
+Since `<DndCard>` wraps your item component with a `<div>` element, you might want to apply some props (eg. `style`) on that `<div>`.
 
 ## Build This Project
 ```
