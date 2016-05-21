@@ -70,6 +70,11 @@ class DndCard extends Component {
       ...restProps
     } = this.props;
 
+    const item = createItem(source, isDragging);
+    if (typeof item === 'undefined') {
+      console.warn('Warning: createItem returns undefined. It should return a React component or null.');
+    }
+
     return connectDragSource(connectDropTarget(
       <div {...restProps}>
         {createItem(source, isDragging)}
