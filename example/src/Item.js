@@ -12,7 +12,7 @@ const propTypes = {
   text: PropTypes.string.isRequired
 };
 
-function Item(props) {
+export function Item(props) {
   const { text, isDragging } = props;
   const opacity = isDragging ? 0 : 1;
 
@@ -25,4 +25,6 @@ function Item(props) {
 
 Item.propTypes = propTypes;
 
-export default Item;
+export function createItem(item, isDragging) {
+  return <Item text={item.text} isDragging={isDragging}/>;
+}

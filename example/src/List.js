@@ -3,11 +3,7 @@ import update from 'react/lib/update';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import DndCard from 'react-dnd-card';
-import Item from './Item';
-
-function createItem(item, isDragging) {
-  return <Item text={item.text} isDragging={isDragging}/>;
-}
+import { Item, createItem } from './Item';
 
 class List extends Component {
   constructor(props) {
