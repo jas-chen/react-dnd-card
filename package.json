@@ -4,7 +4,8 @@
   "description": "Drag and Drop Card component for React",
   "main": "lib/index.js",
   "scripts": {
-    "build": "babel src --out-dir lib",
+    "prebuild": "rm -rf lib",
+    "build": "babel src --out-dir lib --source-maps inline",
     "prepublish": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -33,12 +34,15 @@
   },
   "homepage": "https://github.com/jas-chen/react-dnd-card#readme",
   "peerDependencies": {
+    "react": "^15.1.0",
     "react-dnd": "^2"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.5.0",
-    "babel-preset-stage-2": "^6.5.0"
+    "babel-preset-stage-2": "^6.5.0",
+    "react": "^15.1.0",
+    "react-dnd": "^2"
   },
   "dependencies": {
     "lodash.flow": "^3.3.0"

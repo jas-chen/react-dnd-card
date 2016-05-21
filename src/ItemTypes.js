@@ -1,3 +1,3 @@
 export default {
-  CARD: 'card'
+  DND_CARD: 'dnd_card'
 };

@@ -1,0 +1,28 @@
+import React, { Component, PropTypes } from 'react';
+
+const style = {
+  color: 'gray',
+  border: '1px dashed gray',
+  padding: '.5em 1em',
+  cursor: 'move'
+};
+
+const propTypes = {
+  isDragging: PropTypes.bool.isRequired,
+  text: PropTypes.string.isRequired
+};
+
+function Item(props) {
+  const { text, isDragging } = props;
+  const opacity = isDragging ? 0 : 1;
+
+  return (
+    <div style={{ ...style, opacity }}>
+      {text}
+    </div>
+  );
+}
+
+Item.propTypes = propTypes;
+
+export default Item;

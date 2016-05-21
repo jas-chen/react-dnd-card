@@ -1,6 +1,6 @@
-import React, { cloneElement, Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import ItemTypes from './ItemTypes';
-import { DragDropContext, DragSource, DropTarget } from 'react-dnd';
+import { DragSource, DropTarget } from 'react-dnd';
 import flow from 'lodash.flow';
 
 const cardSource = {
@@ -12,11 +12,13 @@ const cardSource = {
   },
 
   endDrag(props, monitor) {
-    const { index, originalIndex } = monitor.getItem();
-    const didDrop = monitor.didDrop();
+    if (props.noDropOutside) {
+      const { index, originalIndex } = monitor.getItem();
+      const didDrop = monitor.didDrop();
 
-    if (!didDrop) {
-      props.moveCard(index, originalIndex);
+      if (!didDrop) {
+        props.moveCard(index, originalIndex);
+      }
     }
   }
 };
@@ -42,27 +44,48 @@ const cardTarget = {
   }
 };
 
-function Card(props) {
-  const { children, isDragging, connectDragSource, connectDropTarget, moveCard, ...rest } = props;
-  const newCard = cloneElement(children, { isDragging });
-  return connectDragSource(connectDropTarget(<div {...rest}>{newCard}</div>));
-}
-
-export default flow(
-  DragSource(ItemTypes.CARD, cardSource, (connect, monitor) => ({
-    connectDragSource: connect.dragSource(),
-    isDragging: monitor.isDragging()
-  })),
-  DropTarget(ItemTypes.CARD, cardTarget, connect => ({
-    connectDropTarget: connect.dropTarget()
-  }))
-)(Card);
-
-Card.propTypes = {
+const propTypes = {
+  index: PropTypes.number.isRequired,
+  source: PropTypes.any.isRequired,
+  createItem: PropTypes.func.isRequired,
+  moveCard: PropTypes.func.isRequired,
+  isDragging: PropTypes.bool.isRequired,
   connectDragSource: PropTypes.func.isRequired,
   connectDropTarget: PropTypes.func.isRequired,
-  isDragging: PropTypes.bool.isRequired,
-  children: PropTypes.object.isRequired,
-  index: PropTypes.number.isRequired,
-  moveCard: PropTypes.func.isRequired
+  noDropOutside: PropTypes.bool
+};
+
+class DndCard extends Component {
+  render() {
+    const {
+      index,
+      source,
+      createItem,
+      noDropOutside, // remove from restProps
+      moveCard,      // remove from restProps
+
+      isDragging,
+      connectDragSource,
+      connectDropTarget,
+      ...restProps
+    } = this.props;
+
+    return connectDragSource(connectDropTarget(
+      <div {...restProps}>
+        {createItem(source, isDragging)}
+      </div>
+    ));
+  }
 }
+
+DndCard.propTypes = propTypes;
+
+export default flow(
+  DropTarget(ItemTypes.DND_CARD, cardTarget, connect => ({
+    connectDropTarget: connect.dropTarget()
+  })),
+  DragSource(ItemTypes.DND_CARD, cardSource, (connect, monitor) => ({
+    connectDragSource: connect.dragSource(),
+    isDragging: monitor.isDragging()
+  }))
+)(DndCard);
