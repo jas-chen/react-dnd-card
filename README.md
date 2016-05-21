@@ -150,5 +150,11 @@ Disabled by default. Set to `true` to revert the drag operation if the card was 
 ##### `style` and other props (optional)
 Since `<DndCard>` wraps your item component with a `<div>` element, you might want to apply some styles on that `<div>`.
 
+## Build This Project
+```
+npm install
+npm build
+```
+
 ## License
 The MIT License (MIT).
