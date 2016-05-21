@@ -76,15 +76,19 @@ class List extends Component {
     };
   }
 
+  createItem(item, isDragging) {
+    return <Item text={item.text} isDragging={isDragging}/>;
+  }
+
   moveCard(dragIndex, hoverIndex) {
     const { items } = this.state;
-    const dragCard = items[dragIndex];
+    const dragItem = items[dragIndex];
 
     this.setState(update(this.state, {
       items: {
         $splice: [
           [dragIndex, 1],
-          [hoverIndex, 0, dragCard]
+          [hoverIndex, 0, dragItem]
         ]
       }
     }));
@@ -92,10 +96,6 @@ class List extends Component {
 
   render() {
     const { items } = this.state;
-
-    function createItem(item, isDragging) {
-      return <Item text={item.text} isDragging={isDragging}/>;
-    }
 
     return (
       <div>
@@ -105,7 +105,7 @@ class List extends Component {
             key={item.id}
             index={index}
             source={item}
-            createItem={createItem}
+            createItem={this.createItem}
             moveCard={this.moveCard}
             noDropOutside={true}
             style={{
@@ -134,25 +134,21 @@ npm install --save react-dnd react-dnd-card
 #### Props
 
 ##### `index` (required)
-The index of the component.
+The index of the `<DndCard>` element.
 
 ##### `source` (required)
 Could be anything. It will be passed to `createItem` (see below).
 
 ##### `createItem(source, isDragging)` (required)
 A function that creates your item element.
-```javascript
-function createItem(source, isDragging) {
-  return <Item text={source.text} isDragging={isDragging}/>;
-}
-```
+
 ##### `moveCard(dragIndex, hoverIndex)` (required)
 A function to handle the movement.
 
 ##### `noDropOutside` (optional)
 Disabled by default. Set to `true` to revert the drag operation if the card was dropped outside its container. You can compare [the enabled demo](http://gaearon.github.io/react-dnd/examples-sortable-cancel-on-drop-outside.html) and [the disabled demo](http://gaearon.github.io/react-dnd/examples-sortable-simple.html) to tell the difference.
 
-##### `style` or other props (optional)
+##### `style` and other props (optional)
 Since `<DndCard>` wraps your item component with a `<div>` element, you might want to apply some styles on that `<div>`.
 
 ## License

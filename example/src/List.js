@@ -35,15 +35,19 @@ class List extends Component {
     };
   }
 
+  createItem(item, isDragging) {
+    return <Item text={item.text} isDragging={isDragging}/>;
+  }
+
   moveCard(dragIndex, hoverIndex) {
     const { items } = this.state;
-    const dragCard = items[dragIndex];
+    const dragItem = items[dragIndex];
 
     this.setState(update(this.state, {
       items: {
         $splice: [
           [dragIndex, 1],
-          [hoverIndex, 0, dragCard]
+          [hoverIndex, 0, dragItem]
         ]
       }
     }));
@@ -51,10 +55,6 @@ class List extends Component {
 
   render() {
     const { items } = this.state;
-
-    function createItem(item, isDragging) {
-      return <Item text={item.text} isDragging={isDragging}/>;
-    }
 
     return (
       <div>
@@ -64,7 +64,7 @@ class List extends Component {
             key={item.id}
             index={index}
             source={item}
-            createItem={createItem}
+            createItem={this.createItem}
             moveCard={this.moveCard}
             noDropOutside={true}
             style={{
