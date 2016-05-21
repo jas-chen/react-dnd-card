@@ -122,9 +122,9 @@ export default DragDropContext(HTML5Backend)(List);
 ```
 
 ## Install
-You have to install [react-dnd](https://github.com/gaearon/react-dnd) too.
+You have to install [React DnD](https://github.com/gaearon/react-dnd) and [React DnD backend](http://gaearon.github.io/react-dnd/docs-overview.html#backends) too.
 ```
-npm install --save react-dnd react-dnd-card
+npm install --save react-dnd react-dnd-html5-backend react-dnd-card
 ```
 
 ## Api
