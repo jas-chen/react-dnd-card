@@ -22,7 +22,7 @@ const propTypes = {
   text: PropTypes.string.isRequired
 };
 
-function Item(props) {
+export function Item(props) {
   const { text, isDragging } = props;
   const opacity = isDragging ? 0 : 1;
 
@@ -34,7 +34,10 @@ function Item(props) {
 }
 
 Item.propTypes = propTypes;
-export default Item;
+
+export function createItem(item, isDragging) {
+  return <Item text={item.text} isDragging={isDragging}/>;
+}
 ```
 
 #### List.js
@@ -44,11 +47,7 @@ import update from 'react/lib/update';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import DndCard from 'react-dnd-card';
-import Item from './Item';
-
-function createItem(item, isDragging) {
-  return <Item text={item.text} isDragging={isDragging}/>;
-}
+import { Item, createItem } from './Item';
 
 class List extends Component {
   constructor(props) {
