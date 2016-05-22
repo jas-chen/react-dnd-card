@@ -106,7 +106,6 @@ class List extends Component {
             source={item}
             createItem={createItem}
             moveCard={this.moveCard}
-            noDropOutside={true}
             style={{ marginBottom: '.5em' }}
           />
         ))}
@@ -146,6 +145,10 @@ Disabled by default. Set to `true` to revert the drag operation if the card was 
 
 ##### Other props (optional)
 Since `<DndCard>` wraps your item component with a `<div>` element, you might want to apply some props (eg. `style`) on that `<div>`.
+
+If a prop's value is a function, it'll be invoke with `isDragging` and the result will be used as the prop value.
+
+> **Important:** Margin spaces between `<DndCard>` is **undroppable** when `noDropOutside` is set to `true`. If a user dropped `<DndCard>` on margin spaces, the operation will be reverted, this usually brings poor UX. So it is recommended not to set margin between `<DndCard>` when `noDropOutside` is set to `true`.
 
 ## Build This Project
 ```

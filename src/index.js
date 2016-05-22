@@ -75,8 +75,14 @@ class DndCard extends Component {
       console.warn('Warning: createItem returns undefined. It should return a React component or null.');
     }
 
+    const finalProps = Object.keys(restProps).reduce((result, k) => {
+      const prop = restProps[k];
+      result[k] = typeof prop === 'function' ? prop(isDragging) : prop;
+      return result;
+    }, {});
+
     return connectDragSource(connectDropTarget(
-      <div {...restProps}>
+      <div {...finalProps}>
         {createItem(source, isDragging)}
       </div>
     ));
