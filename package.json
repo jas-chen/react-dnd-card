@@ -1,6 +1,6 @@
 {
   "name": "react-dnd-card",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Drag and Drop Card component for React. Create a drag and drop list in a minute.",
   "main": "lib/index.js",
   "scripts": {
