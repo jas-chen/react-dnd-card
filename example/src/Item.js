@@ -4,7 +4,8 @@ const style = {
   color: 'gray',
   border: '1px dashed gray',
   padding: '.5em 1em',
-  cursor: 'move'
+  marginTop: '.25em',
+  marginBottom: '.25em'
 };
 
 const propTypes = {

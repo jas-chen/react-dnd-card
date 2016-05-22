@@ -63,8 +63,13 @@ class List extends Component {
             createItem={createItem}
             moveCard={this.moveCard}
             noDropOutside={true}
-            style={{
-              marginBottom: '.5em'
+            style={isDragging => {
+              return {
+                display: 'inline-block',
+                width: '100%',
+                background: isDragging ? '#eee' : 'transparent',
+                cursor: 'move'
+              } ;
             }}
           />
         ))}
