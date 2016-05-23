@@ -140,6 +140,9 @@ A function that creates and returns your item element.
 ##### `moveCard(dragIndex, hoverIndex)` (required)
 A function to handle the movement.
 
+##### `endDrag` (optional)
+A function to be called when drag ends.
+
 ##### `noDropOutside` (optional)
 Disabled by default. Set to `true` to revert the drag operation if the card was dropped outside its container. You can compare [the enabled demo](http://gaearon.github.io/react-dnd/examples-sortable-cancel-on-drop-outside.html) and [the disabled demo](http://gaearon.github.io/react-dnd/examples-sortable-simple.html) to tell the difference.
 
@@ -158,6 +161,9 @@ npm build
 
 ## Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
+
+### v0.3.4
+[d7f394e](https://github.com/jas-chen/react-dnd-card/commit/d7f394e816258bd93fcb78c4284b4007be9e51a8) Add endDrag callback.
 
 ### v0.3.4
 [8745b1c](https://github.com/jas-chen/react-dnd-card/commit/8745b1c97be6b8f3111c5a191131066cf63609dd) Fix peerDependencies and devDependencies.
