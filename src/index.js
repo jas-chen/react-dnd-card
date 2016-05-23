@@ -20,6 +20,10 @@ const cardSource = {
         props.moveCard(index, originalIndex);
       }
     }
+
+    if (props.endDrag) {
+      props.endDrag();
+    }
   }
 };
 
@@ -49,6 +53,7 @@ const propTypes = {
   source: PropTypes.any.isRequired,
   createItem: PropTypes.func.isRequired,
   moveCard: PropTypes.func.isRequired,
+  endDrag: PropTypes.func,
   isDragging: PropTypes.bool.isRequired,
   connectDragSource: PropTypes.func.isRequired,
   connectDropTarget: PropTypes.func.isRequired,
@@ -63,6 +68,7 @@ class DndCard extends Component {
       createItem,
       noDropOutside, // remove from restProps
       moveCard,      // remove from restProps
+      endDrag,       // remove from restProps
 
       isDragging,
       connectDragSource,
