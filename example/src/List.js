@@ -5,34 +5,22 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import DndCard from 'react-dnd-card';
 import { Item, createItem } from './Item';
 
+function get1000Items() {
+  const items = [];
+  for (let i = 0; i < 20; i++) {
+    const item = { id: i, text: `Item ${i}` };
+    items.push(item);
+  }
+
+  return items;
+}
+
 class List extends Component {
   constructor(props) {
     super(props);
+
+    this.state = { items: get1000Items() };
     this.moveCard = this.moveCard.bind(this);
-    this.state = {
-      items: [{
-        id: 1,
-        text: 'Write a cool JS library'
-      }, {
-        id: 2,
-        text: 'Make it generic enough'
-      }, {
-        id: 3,
-        text: 'Write README'
-      }, {
-        id: 4,
-        text: 'Create some examples'
-      }, {
-        id: 5,
-        text: 'Spam in Twitter and IRC to promote it (note that this element is taller than the others)'
-      }, {
-        id: 6,
-        text: '???'
-      }, {
-        id: 7,
-        text: 'PROFIT'
-      }]
-    };
   }
 
   moveCard(dragIndex, hoverIndex) {
@@ -63,6 +51,7 @@ class List extends Component {
             createItem={createItem}
             moveCard={this.moveCard}
             noDropOutside={true}
+            endDrag={() => console.log('Drag ends!')}
             style={isDragging => {
               return {
                 display: 'inline-block',
