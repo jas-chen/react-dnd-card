@@ -5,3 +5,4 @@ logs
 /.babelrc
 /.npmignore
 /src
+/example
