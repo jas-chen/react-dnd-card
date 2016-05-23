@@ -156,5 +156,23 @@ npm install
 npm build
 ```
 
+## Change Log
+This project adheres to [Semantic Versioning](http://semver.org/).
+
+### v0.3.4
+[8745b1c](https://github.com/jas-chen/react-dnd-card/commit/8745b1c97be6b8f3111c5a191131066cf63609dd) Fix peerDependencies and devDependencies.
+
+### v0.3.3
+[9f88e15](https://github.com/jas-chen/react-dnd-card/commit/9f88e157dbf5796eaa91c037cf5a9f3d8b8cfce7) Remove inline source map.
+
+### v0.3.2
+[098d479](https://github.com/jas-chen/react-dnd-card/commit/098d47920e8715c5b47b2f4a78f4cc9d36c28353) Invoke prop's value if it is a function.
+
+### v0.3.1
+[b0cba4c](https://github.com/jas-chen/react-dnd-card/commit/b0cba4c73b6d26fe834045d135dcc0a0123f47aa) Check return value of `createItem()`.
+
+### v0.3.0
+[35b147b](https://github.com/jas-chen/react-dnd-card/commit/35b147b8086b090d4cfc9899a21c9f4f14ea8544) Completely rewrite to solve the performance issue.
+
 ## License
 The MIT License (MIT).
