@@ -166,7 +166,7 @@ Don't pass objects into `<DndCard>`, pass functions instead! And make sure you d
 // Do
 <DndCard style={this.dragStyle} ... />
 // Don't
-<DndCard style={dragStyle(isDragging) {
+<DndCard style={(isDragging) => {
   return {
     background: isDragging ? '#eee' : 'transparent'
   } ;
