@@ -26,6 +26,7 @@ export function Item(props) {
 
 Item.propTypes = propTypes;
 
-export function createItem(item, isDragging) {
+export function createItem(getItem, isDragging, index) {
+  const item = getItem(index);
   return <Item text={item.text} isDragging={isDragging}/>;
 }
