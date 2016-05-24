@@ -153,6 +153,28 @@ If a prop's value is a function, it'll be invoke with `isDragging` and the resul
 
 > **Important:** Margin spaces between `<DndCard>` is **undroppable** when `noDropOutside` is set to `true`. If a user dropped `<DndCard>` on margin spaces, the operation will be reverted, this usually brings poor UX. So it is recommended not to set margin between `<DndCard>` when `noDropOutside` is set to `true`.
 
+## Performance Gotcha
+Don't pass objects into `<DndCard>`, pass functions instead! And make sure you don't create function in props too.
+
+```javascript
+// Do
+<DndCard source={this.getItem} ... />
+// Don't
+<DndCard source={item} ... />
+
+
+// Do
+<DndCard style={this.dragStyle} ... />
+// Don't
+<DndCard style={dragStyle(isDragging) {
+  return {
+    background: isDragging ? '#eee' : 'transparent'
+  } ;
+}} ... />
+```
+
+Try [example](https://github.com/jas-chen/react-dnd-card/tree/master/example), it handles 500 items and still performances well.
+
 ## Build This Project
 ```
 npm install
