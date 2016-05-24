@@ -134,7 +134,7 @@ The index of the `<DndCard>` element.
 ##### `source` (required)
 Could be anything. It will be passed to `createItem` (see below).
 
-##### `createItem(source, isDragging)` (required)
+##### `createItem(source, isDragging, index)` (required)
 A function that creates and returns your item element.
 
 ##### `moveCard(dragIndex, hoverIndex)` (required)
@@ -162,7 +162,10 @@ npm build
 ## Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-### v0.3.4
+### v0.3.6
+[c87a388](https://github.com/jas-chen/react-dnd-card/commit/c87a3889759183c1e4d1a70a0cbdf40b1bc38d18) Pass index to createItem().
+
+### v0.3.5
 [d7f394e](https://github.com/jas-chen/react-dnd-card/commit/d7f394e816258bd93fcb78c4284b4007be9e51a8) Add endDrag callback.
 
 ### v0.3.4
