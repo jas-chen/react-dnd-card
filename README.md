@@ -192,6 +192,9 @@ npm build
 ## Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+### v0.3.7
+[bb5b8b2](https://github.com/jas-chen/react-dnd-card/commit/bb5b8b2165849e7780bd4b283a1b6a2beb4467c1) Add id mode.
+
 ### v0.3.6
 [c87a388](https://github.com/jas-chen/react-dnd-card/commit/c87a3889759183c1e4d1a70a0cbdf40b1bc38d18) Pass index to createItem().
 
