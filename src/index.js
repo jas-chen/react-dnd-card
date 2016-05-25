@@ -3,9 +3,14 @@ import ItemTypes from './ItemTypes';
 import { DragSource, DropTarget } from 'react-dnd';
 import flow from 'lodash.flow';
 
+function isNullOrUndefined(o) {
+  return o == null;
+}
+
 const cardSource = {
   beginDrag(props) {
     return {
+      id: props.id,
       index: props.index,
       originalIndex: props.index
     };
@@ -13,11 +18,11 @@ const cardSource = {
 
   endDrag(props, monitor) {
     if (props.noDropOutside) {
-      const { index, originalIndex } = monitor.getItem();
+      const { id, index, originalIndex } = monitor.getItem();
       const didDrop = monitor.didDrop();
 
       if (!didDrop) {
-        props.moveCard(index, originalIndex);
+        props.moveCard(isNullOrUndefined(id) ? index : id, originalIndex);
       }
     }
 
@@ -29,22 +34,26 @@ const cardSource = {
 
 const cardTarget = {
   hover(props, monitor) {
-    const dragIndex = monitor.getItem().index;
-    const hoverIndex = props.index;
+    const { id: dragId, index: dragIndex } = monitor.getItem();
+    const { id: hoverId, index: hoverIndex } = props;
 
-    // Don't replace items with themselves
-    if (dragIndex === hoverIndex) {
-      return;
+    if (!isNullOrUndefined(dragId)) {
+      // use id
+      if (dragId !== hoverId) {
+        props.moveCard(dragId, hoverIndex);
+      }
+    } else {
+      // use index
+      if (dragIndex !== hoverIndex) {
+        props.moveCard(dragIndex, hoverIndex);
+
+        // Note: we're mutating the monitor item here!
+        // Generally it's better to avoid mutations,
+        // but it's good here for the sake of performance
+        // to avoid expensive index searches.
+        monitor.getItem().index = hoverIndex;
+      }
     }
-
-    // Time to actually perform the action
-    props.moveCard(dragIndex, hoverIndex);
-
-    // Note: we're mutating the monitor item here!
-    // Generally it's better to avoid mutations,
-    // but it's good here for the sake of performance
-    // to avoid expensive index searches.
-    monitor.getItem().index = hoverIndex;
   }
 };
 
@@ -63,6 +72,7 @@ const propTypes = {
 class DndCard extends Component {
   render() {
     const {
+      id,
       index,
       source,
       createItem,
@@ -76,9 +86,13 @@ class DndCard extends Component {
       ...restProps
     } = this.props;
 
+    if (id === null) {
+      console.warn('Warning: `id` is null. Set to undefined to get better performance.');
+    }
+    
     const item = createItem(source, isDragging, index);
     if (typeof item === 'undefined') {
-      console.warn('Warning: createItem returns undefined. It should return a React component or null.');
+      console.warn('Warning: `createItem` returns undefined. It should return a React element or null.');
     }
 
     const finalProps = Object.keys(restProps).reduce((result, k) => {

@@ -131,14 +131,17 @@ npm install --save react-dnd react-dnd-html5-backend react-dnd-card
 ##### `index` (required)
 The index of the `<DndCard>` element.
 
+#### `id` (optional)
+The unique id of the `<DndCard>` element. This will turn the [`id mode`](#id-mode) on.
+
 ##### `source` (required)
 Could be anything. It will be passed to `createItem` (see below).
 
 ##### `createItem(source, isDragging, index)` (required)
 A function that creates and returns your item element.
 
-##### `moveCard(dragIndex, hoverIndex)` (required)
-A function to handle the movement.
+##### `moveCard(dragIndex/dragId, hoverIndex)` (required)
+A function to handle the movement. The first argument is `dragIndex` by default, and it will be `dragId` in the [`id mode`](#id-mode).
 
 ##### `endDrag` (optional)
 A function to be called when drag ends.
@@ -174,6 +177,11 @@ Don't pass objects into `<DndCard>`, pass functions instead! And make sure you d
 ```
 
 Try [example](https://github.com/jas-chen/react-dnd-card/tree/master/example), it handles 500 items and still performances well.
+
+## ID Mode
+Still not smooth enough? Pass `id` into `<DndCard>` to turn the `id mode` on! It lets you handle the movement using [`requestAnimationFrame()`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame).
+
+Try [example](https://github.com/jas-chen/react-dnd-card/tree/master/example), set `ID_MODE` to `true` and see how it handles 1000 items and still performances well.
 
 ## Build This Project
 ```
