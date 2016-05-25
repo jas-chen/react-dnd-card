@@ -6,7 +6,7 @@ import DndCard from 'react-dnd-card';
 import { Item, createItem } from './Item';
 
 // set to `true` to use requestAnimationFrame to handle 1000 items.
-const ID_MODE = true;
+const ID_MODE = false;
 
 function genItems() {
   const items = [];
